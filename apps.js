@@ -9,18 +9,33 @@ app.listen(process.env.port ||4000, function(){
     console.log("ge zijt goed bezig vent")
 });
 
-app.get("/speak/pig", function(req,res){
-    res.send("The pig says: let's go")
+app.get("/speak/:animal", function(req,res){
+    var animal = req.params.animal;
+    var sound = "";
+    if (animal === "cow") {
+      sound = "moo"
+    }else if (animal === "pig") {
+        sound = "oink"
+    }
+    else if (animal ==="dog") {
+        sound = "woef"
+    }
+   res.send("The " + animal + "says" +"" + sound);
+
 })
 
-app.get("/speak/cat", function(req,res){
-    res.send("The cat says: your a pussy")
-})
+// app.get("/speak/pig", function(req,res){
+//     res.send("The pig says: let's go")
+// })
 
-app.get("/speak/dog", function(req,res){
-    res.send("The dog says: who let the dogs out")
-})
+// app.get("/speak/cat", function(req,res){
+//     res.send("The cat says: your a pussy")
+// })
 
-app.get("*", function(req,res){
-    res.send("Not all who wander are lost... but you are on the wrong page tho")
-})
+// app.get("/speak/dog", function(req,res){
+//     res.send("The dog says: who let the dogs out")
+// })
+
+// app.get("*", function(req,res){
+//     res.send("Not all who wander are lost... but you are on the wrong page tho")
+// })
